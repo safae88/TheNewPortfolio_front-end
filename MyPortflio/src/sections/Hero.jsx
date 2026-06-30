@@ -26,8 +26,8 @@ export default function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.03),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_35%)]" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <motion.div style={{ y: textY, opacity: textOpacity }}>
+      <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-6xl items-start gap-12 overflow-visible lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <motion.div className="min-w-0 self-center lg:self-auto" style={{ y: textY, opacity: textOpacity }}>
           <motion.p
             className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400"
             initial={{ opacity: 0, y: 20 }}
@@ -64,10 +64,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
+
             <MagneticButton href="#projects">
               View Projects
               <ArrowUpRight size={16} />
             </MagneticButton>
+            
             <MagneticButton variant="secondary" href={Profile} target="_blank" rel="noreferrer">
               <Download size={16} />
               Download CV
@@ -75,7 +77,9 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        <HeroProfilePicture containerRef={ref} />
+        <div className="min-w-0 w-full lg:flex lg:justify-end">
+          <HeroProfilePicture containerRef={ref} />
+        </div>
       </div>
 
       <ScrollIndicator />

@@ -1,8 +1,4 @@
-import {
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { useScroll, useSpring, useTransform} from "framer-motion";
 import { useEffect, useState } from "react";
 
 /**

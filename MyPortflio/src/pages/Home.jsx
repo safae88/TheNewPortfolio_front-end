@@ -17,7 +17,10 @@ export default function Home() {
       exit="exit"
       variants={pageTransition}
     >
-      <Navbar />
+
+{/* /* // التنقل داخل الموقع */ }
+      <Navbar /> 
+
       <main>
         <Hero />
         <About />
@@ -26,7 +29,10 @@ export default function Home() {
         <Timeline />
         <Contact />
       </main>
+
+{/* أسفل الموقع */}
       <Footer />
+
     </motion.div>
   );
 }
