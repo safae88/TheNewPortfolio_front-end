@@ -38,7 +38,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            className="font-[family-name:var(--font-display)] text-[clamp(3rem,10vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-neutral-950"
+            className="font-[family-name:var(--font-display)] text-[clamp(1.9rem,5.6vw,4.1rem)] font-extrabold leading-[0.96] tracking-[-0.04em] text-neutral-950"
             style={{ fontFamily: "var(--font-display)" }}
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Code2 } from "lucide-react";
 import { projects } from "../data/projects";
-import LazyImage from "../components/ui/LazyImage";
+import Media from "../components/ui/Media";
 import MagneticButton from "../components/ui/MagneticButton";
 import SectionHeading from "../components/ui/SectionHeading";
 import { fadeUp, staggerContainer } from "../hooks/animations";
@@ -31,8 +31,9 @@ export default function Projects() {
                 index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <LazyImage
-                src={project.image}
+              <Media
+                type={project.type}
+                src={project.media}
                 alt={project.title}
                 wrapperClassName="aspect-[16/10] lg:aspect-auto lg:min-h-[360px]"
                 className="transition-transform duration-700 group-hover:scale-105"

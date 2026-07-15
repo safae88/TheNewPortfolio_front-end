@@ -24,6 +24,6 @@ export const profile = {
     { name: "GitHub", url: "https://github.com/safae88", icon: "github" },
     { name: "WhatsApp", url: "https://wa.me/212693867626?text=Hello%20Safae,%20I%20found%20your%20portfolio%20and%20would%20like%20to%20get%20in%20touch.", icon: "whatsapp" },
     { name: "LinkedIn", url: "https://www.linkedin.com/in/safae-bouchouicha-1a31a23a7", icon: "linkedin" },
-    { name: "Email", url: "mailto:safaebouchouicha@gmail.com?subject=Portfolio Contact&body=Hello Safae, I found your portfolio and would like to get in touch.", icon: "mail" },
+    { name: "Email", url: "https://www.safaebouchouicha@gmail.com?subject=Portfolio Contact&body=Hello Safae, I found your portfolio and would like to get in touch.", icon: "mail" },
   ],
 };
