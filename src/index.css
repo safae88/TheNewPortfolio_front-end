@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
   --font-display: "Syne", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
   --color-surface: #fafafa;
@@ -10,18 +12,28 @@
   --color-glass: rgba(255, 255, 255, 0.72);
 }
 
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white text-neutral-950 antialiased;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-body);
   }
 
+  html.dark body {
+    background: #020b1f;
+    color: #f8fcf9;
+  }
+
   ::selection {
-    @apply bg-neutral-950 text-white;
+    background-color: #0a0a0a;
+    color: #ffffff;
   }
 }
 
@@ -35,11 +47,58 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     background-image: linear-gradient(135deg, #0a0a0a 0%, #525252 100%);
   }
 
   .section-padding {
-    @apply px-6 py-24 md:px-10 md:py-32 lg:px-16;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  .card {
+  @apply rounded-3xl border border-neutral-200 bg-white shadow-sm
+         transition-all duration-500
+         dark:bg-slate-900
+         dark:border-slate-700
+         dark:shadow-2xl
+         dark:shadow-black/20;
+}
+
+.card-title {
+  @apply text-2xl font-bold text-neutral-950 dark:text-white transition-colors duration-500;
+}
+
+.card-text {
+  @apply text-neutral-600 dark:text-slate-300 transition-colors duration-500;
+}
+
+.card-tag {
+  @apply rounded-full border border-neutral-200
+         dark:border-slate-600
+         dark:bg-slate-800
+         text-neutral-600
+         dark:text-slate-200
+         transition-colors duration-500;
+}
 }

@@ -6,7 +6,7 @@ import { fadeUp, staggerContainer } from "../hooks/animations";
 
 export default function About() {
   return (
-    <section id="about" className="section-padding bg-neutral-50">
+    <section id="about" className="section-padding bg-neutral-50 dark:bg-[#020b1f] transition-colors duration-500">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="About Me"
@@ -23,24 +23,29 @@ export default function About() {
         >
           <motion.div
             variants={fadeUp}
-            className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm"
+            className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm
+          dark:border-slate-700 dark:bg-slate-900 transition-colors duration-500"
           >
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-neutral-400">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.15em]
+           text-neutral-400 dark:text-slate-400 transition-colors duration-500">
               Education
             </h3>
-            <p className="text-base leading-relaxed text-neutral-600">
+            <p className="text-base leading-relaxed
+           text-neutral-600 dark:text-slate-300 transition-colors duration-500">
               {profile.education}
             </p>
           </motion.div>
 
           <motion.div
             variants={fadeUp}
-            className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm"
-          >
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-neutral-400">
+            className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm
+          dark:border-slate-700 dark:bg-slate-900 transition-colors duration-500"          >
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.15em]
+          text-neutral-400 dark:text-slate-400 transition-colors duration-500">
               Career Goals
             </h3>
-            <p className="text-base leading-relaxed text-neutral-600">
+            <p className="text-base leading-relaxed
+         text-neutral-600 dark:text-slate-300 transition-colors duration-500">
               {profile.careerGoals}
             </p>
           </motion.div>

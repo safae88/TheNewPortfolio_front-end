@@ -6,7 +6,6 @@ export default function SectionHeading({
   title,
   description,
   align = "left",
-  dark = false,
   className = "",
 }) {
   const alignClass =
@@ -24,26 +23,20 @@ export default function SectionHeading({
     >
       {eyebrow && (
         <span
-          className={`text-xs font-semibold uppercase tracking-[0.2em] ${
-            dark ? "text-neutral-500" : "text-neutral-400"
-          }`}
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400 dark:text-slate-400 transition-colors duration-500"
         >
           {eyebrow}
         </span>
       )}
       <h2
-        className={`font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl ${
-          dark ? "text-white" : "text-neutral-950"
-        }`}
+        className="font-(family-name:--font-display) text-4xl font-bold tracking-tight text-neutral-950 dark:text-white transition-colors duration-500 md:text-5xl lg:text-6xl"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {title}
       </h2>
       {description && (
         <p
-          className={`max-w-xl text-base leading-relaxed md:text-lg ${
-            dark ? "text-neutral-400" : "text-neutral-500"
-          }`}
+         className="max-w-xl text-base leading-relaxed text-neutral-500 dark:text-slate-300 transition-colors duration-500 md:text-lg"
         >
           {description}
         </p>

@@ -5,6 +5,7 @@ import { navLinks } from "../data/navigation";
 import { profile } from "../data/profile";
 import { useNavbarScroll } from "../hooks/useNavbarScroll";
 import MagneticButton from "./ui/MagneticButton";
+import ThemeToggle from "./ui/ThemeToggle";
 
 export default function Navbar() {
   const { hidden, scrolled } = useNavbarScroll();
@@ -19,14 +20,14 @@ export default function Navbar() {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <nav
-          className={`glass-nav flex w-full max-w-5xl items-center justify-between rounded-full px-4 py-3 md:px-6 ${
+          className={`glass-nav flex w-full max-w-5xl items-center justify-between rounded-full px-4 py-3 md:px-6 dark:border-slate-700 dark:bg-slate-950/70 dark:shadow-black/20 ${
             scrolled ? "shadow-lg shadow-black/5" : ""
           }`}
           aria-label="Main navigation"
         >
           <a
             href="#hero"
-            className="font-[family-name:var(--font-display)] text-sm font-bold tracking-tight text-neutral-950 md:text-base"
+            className="font-(family-name:--font-display) text-sm font-bold tracking-tight text-neutral-950 md:text-base"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {profile.firstName}
@@ -46,8 +47,9 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <MagneticButton href="#contact" className="!px-5 !py-2.5 !text-xs">
+          <div className="hidden items-center gap-3 md:flex">
+            <ThemeToggle />
+            <MagneticButton href="#contact" className="px-5! py-2.5! text-xs!">
               Hire Me
             </MagneticButton>
           </div>
@@ -65,7 +67,7 @@ export default function Navbar() {
 
       {open && (
         <motion.div
-          className="fixed inset-0 z-40 bg-white/90 backdrop-blur-xl md:hidden"
+          className="fixed inset-0 z-40 bg-white/90 backdrop-blur-xl dark:bg-[#020b1f]/90 md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -75,7 +77,7 @@ export default function Navbar() {
               <motion.a
                 key={link.href}
                 href={link.href}
-                className="font-[family-name:var(--font-display)] text-3xl font-semibold text-neutral-950"
+                className="font-(family-name:--font-display) text-3xl font-semibold text-neutral-950 dark:text-slate-100"
                 style={{ fontFamily: "var(--font-display)" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -85,6 +87,7 @@ export default function Navbar() {
                 {link.label}
               </motion.a>
             ))}
+            <ThemeToggle />
             <MagneticButton href="#contact" onClick={() => setOpen(false)}>
               Hire Me
             </MagneticButton>
