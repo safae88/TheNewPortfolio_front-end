@@ -58,7 +58,7 @@ export default function Projects() {
                 className="font-(family-name:--font-display)
                 text-3xl font-bold tracking-tight
               text-neutral-950 dark:text-white
-                md:text-4xl transition-colors duration-500"                 
+                md:text-4xl transition-colors duration-500"
                 style={{ fontFamily: "var(--font-display)" }}
                 >
                   {project.title}
@@ -89,7 +89,11 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs!"
+                    className="rounded-full
+                      border border-neutral-200
+                    dark:border-slate-600
+                      bg-transparent dark:bg-slate-800
+                      px-3 py-1 text-xs text-neutral-600 dark:text-slate-200transition-colors duration-500"
                   >
                     <Code2 size={16} />
                     GitHub
@@ -98,7 +102,7 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs!"
+                    className="text-neutral-600 dark:text-slate-200transition-colors duration-500"
                   >
                     Live Demo
                     <ArrowUpRight size={16} />
