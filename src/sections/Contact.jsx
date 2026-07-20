@@ -54,7 +54,7 @@ export default function Contact() {
             <MagneticButton
               href={`${profile.email}`}
               variant="secondary"
-              className="!border-neutral-700 !bg-transparent !text-white hover:!border-white"
+              className="border-neutral-700! bg-transparent! text-white! hover:border-white!"
             >
               Send an Email
               <ArrowUpRight size={16} />
@@ -64,7 +64,7 @@ export default function Contact() {
           <motion.form
             variants={fadeUp}
             onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-10"
+            className="rounded-4xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-10"
           >
             <div className="space-y-5">
               <div>
@@ -125,7 +125,7 @@ export default function Contact() {
 
             <MagneticButton
               type="submit"
-              className="mt-6 w-full !bg-white !text-neutral-950 hover:!bg-neutral-200"
+              className="mt-6 w-full bg-white! text-neutral-950! hover:bg-neutral-200!"
             >
               {sent ? "Message Sent!" : "Send Message"}
               <Send size={16} />

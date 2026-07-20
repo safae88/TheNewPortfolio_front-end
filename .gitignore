@@ -28,3 +28,5 @@ src/assets/todoVD.mp4
  
 src/assets/todoVD.mp4
  23c82a0 (save changes of the Assest)
+.vercel
+.env*
