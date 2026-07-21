@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+ import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useState } from "react";
 import { profile } from "../data/profile";
@@ -8,14 +9,56 @@ import SocialLinks from "../components/ui/SocialLinks";
 import { fadeUp, staggerContainer } from "../hooks/animations";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const handleSubmit = (e) => {
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setSent(false), 3000);
+
+    setLoading(true);
+
+    try {
+      const response = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      console.log("Email sent successfully:", response);
+
+      setSent(true);
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setSent(false);
+      }, 3000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+
+      alert(
+        `Error: ${
+          error?.text || error?.message || "Failed to send the message."
+        }`
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,7 +73,7 @@ export default function Contact() {
           <SectionHeading
             eyebrow="Contact"
             title="Let's build something exceptional"
-            description="Have a project in mind or want to collaborate?  I'd love to hear from you."
+            description="Have a project in mind or want to collaborate? I'd love to hear from you."
             dark
           />
         </motion.div>
@@ -43,7 +86,6 @@ export default function Contact() {
           viewport={{ once: true, margin: "-60px" }}
         >
           <motion.div variants={fadeUp} className="space-y-8">
-
             <div>
               <p className="mb-4 text-sm uppercase tracking-[0.15em] text-neutral-500">
                 Social
@@ -52,7 +94,7 @@ export default function Contact() {
             </div>
 
             <MagneticButton
-              href={`${profile.email}`}
+              href={`mailto:${profile.email}`}
               variant="secondary"
               className="border-neutral-700! bg-transparent! text-white! hover:border-white!"
             >
@@ -74,17 +116,22 @@ export default function Contact() {
                 >
                   Name
                 </label>
+
                 <input
                   id="name"
                   type="text"
                   required
                   value={form.name}
                   onChange={(e) =>
-                    setForm((f) => ({ ...f, name: e.target.value }))
+                    setForm((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
                   }
                   className="w-full rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 text-white outline-none transition-colors focus:border-white"
                 />
               </div>
+
               <div>
                 <label
                   htmlFor="email"
@@ -92,17 +139,22 @@ export default function Contact() {
                 >
                   Email
                 </label>
+
                 <input
                   id="email"
                   type="email"
                   required
                   value={form.email}
                   onChange={(e) =>
-                    setForm((f) => ({ ...f, email: e.target.value }))
+                    setForm((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
                   }
                   className="w-full rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 text-white outline-none transition-colors focus:border-white"
                 />
               </div>
+
               <div>
                 <label
                   htmlFor="message"
@@ -110,13 +162,17 @@ export default function Contact() {
                 >
                   Message
                 </label>
+
                 <textarea
                   id="message"
-                  required
                   rows={5}
+                  required
                   value={form.message}
                   onChange={(e) =>
-                    setForm((f) => ({ ...f, message: e.target.value }))
+                    setForm((prev) => ({
+                      ...prev,
+                      message: e.target.value,
+                    }))
                   }
                   className="w-full resize-none rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 text-white outline-none transition-colors focus:border-white"
                 />
@@ -125,9 +181,15 @@ export default function Contact() {
 
             <MagneticButton
               type="submit"
+              disabled={loading}
               className="mt-6 w-full bg-white! text-neutral-950! hover:bg-neutral-200!"
             >
-              {sent ? "Message Sent!" : "Send Message"}
+              {loading
+                ? "Sending..."
+                : sent
+                ? "Message Sent!"
+                : "Send Message"}
+
               <Send size={16} />
             </MagneticButton>
           </motion.form>
